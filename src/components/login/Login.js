@@ -173,7 +173,7 @@ const Login = ({navigation}) => {
         <TouchableOpacity
           style={styles.login}
           disabled={isValidationOK() == false}
-          onPress={() => console.log('login')}>
+          onPress={() => navigation.navigate('MainScreen')}>
           <FontAwesomeIcon icon={faArrowRight} size={20} color="white" />
         </TouchableOpacity>
       </View>

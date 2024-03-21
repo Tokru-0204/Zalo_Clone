@@ -42,41 +42,41 @@ export const Home = ({navigation}) => {
     </View>
   );
 
-  useEffect(() => {
-    const unregisterAuthObserver = onAuthStateChanged(authetication, u => {
-      if (u) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
+  // useEffect(() => {
+  //   const unregisterAuthObserver = onAuthStateChanged(authetication, u => {
+  //     if (u) {
+  //       // User is signed in, see docs for a list of available properties
+  //       // https://firebase.google.com/docs/reference/js/firebase.User
 
-        // console.log(userCredential.user.uid);
-        const getUser = async (db, id) => {
-          //get info user by id
-          const docRef = doc(db, 'users', id);
-          const docSnap = await getDoc(docRef);
+  //       // console.log(userCredential.user.uid);
+  //       const getUser = async (db, id) => {
+  //         //get info user by id
+  //         const docRef = doc(db, 'users', id);
+  //         const docSnap = await getDoc(docRef);
 
-          if (docSnap.exists()) {
-            // return docSnap.data();
-            console.log('Document data:', docSnap.data());
-            //set user
-            depatch(SetUser(docSnap.data()));
-            navigation.navigate('HomeTabs');
-            //redict home page
-          } else {
-            // doc.data() will be undefined in this case
-            console.log('No such document!');
-          }
-        };
+  //         if (docSnap.exists()) {
+  //           // return docSnap.data();
+  //           console.log('Document data:', docSnap.data());
+  //           //set user
+  //           depatch(SetUser(docSnap.data()));
+  //           navigation.navigate('HomeTabs');
+  //           //redict home page
+  //         } else {
+  //           // doc.data() will be undefined in this case
+  //           console.log('No such document!');
+  //         }
+  //       };
 
-        getUser(db, u.uid);
-      } else {
-        // User is signed out
-        // ...
-        console.log('sign out');
-      }
-    });
+  //       getUser(db, u.uid);
+  //     } else {
+  //       // User is signed out
+  //       // ...
+  //       console.log('sign out');
+  //     }
+  //   });
 
-    return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
-  }, []);
+  //   return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
+  // }, []);
 
   return (
     <SafeAreaView style={styles.container}>
