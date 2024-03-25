@@ -5,13 +5,18 @@ import Conversation from "../../components/Conversation";
 
 const GeneralApp = () => {
   return (
-    <Stack direction={"row"} sx={{width: "100%"}}>
+    <Stack direction={"row"} sx={{ width: "100%" }}>
+      <Chats />
 
-        <Chats />
-
-        <Box sx={{height: "100%", width:"calc(100vw - 386px)", backgroundColor:"#fff"}}>
+      <Box
+        sx={{
+          height: "100%",
+          width: "calc(100vw - 386px)",
+          backgroundColor: "#F0F4FA",
+        }}
+      >
         <Conversation />
-        </Box>
+      </Box>
     </Stack>
   );
 };
