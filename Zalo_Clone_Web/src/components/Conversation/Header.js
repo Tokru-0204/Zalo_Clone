@@ -9,8 +9,11 @@ import {
 } from "phosphor-react";
 import { useTheme } from "@mui/material/styles";
 import StyledBadge from "../StyledBadge";
+import { toggleSidebar } from "../../redux/slices/app";
+import { useDispatch } from "react-redux";
 const Header = () => {
   const theme = useTheme();
+  const dispatch = useDispatch();
   return (
     <Box
       p={2}
@@ -55,7 +58,11 @@ const Header = () => {
           <IconButton>
             <VideoCamera />
           </IconButton>
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              dispatch(toggleSidebar());
+            }}
+          >
             <SidebarSimple />
           </IconButton>
         </Stack>

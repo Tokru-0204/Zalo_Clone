@@ -31,7 +31,6 @@ const Message = () => {
                 default:
                   return <TextMsg el={el} />;
               }
-              break;
             default:
               return <></>;
           }

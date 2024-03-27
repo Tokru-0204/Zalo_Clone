@@ -157,32 +157,31 @@ const Chats = () => {
         <Stack direction={"row"}>
           <Button>Tất cả</Button>
           <Button>Chưa đọc</Button>
-          
         </Stack>
         <Stack>
-            <Divider style={{marginTop:"-15px"}} />
-          </Stack>
+          <Divider style={{ marginTop: "-15px" }} />
+        </Stack>
         <Stack
           dỉrection={"column"}
           sx={{ flexGrow: 1, overflow: "scroll", height: "100%" }}
         >
           <SimpleBarStyle timeout={500} clickOnTrack={false}>
-          <Stack spacing={1}>
-            <Typography variant="subtitle2" sx={{ color: "#676767" }}>
-              Chưa đọc
-            </Typography>
-            {ChatList.filter((el) => el.pinned).map((el) => {
-              return <ChatElement {...el} />;
-            })}
-          </Stack>
-          <Stack spacing={1}>
-            <Typography variant="subtitle2" sx={{ color: "#676767" }}>
-              Tất cả
-            </Typography>
-            {ChatList.filter((el) => !el.pinned).map((el) => {
-              return <ChatElement {...el} />;
-            })}
-          </Stack>
+            <Stack spacing={1}>
+              <Typography variant="subtitle2" sx={{ color: "#676767" }}>
+                Chưa đọc
+              </Typography>
+              {ChatList.filter((el) => el.pinned).map((el) => {
+                return <ChatElement {...el} />;
+              })}
+            </Stack>
+            <Stack spacing={1}>
+              <Typography variant="subtitle2" sx={{ color: "#676767" }}>
+                Tất cả
+              </Typography>
+              {ChatList.filter((el) => !el.pinned).map((el) => {
+                return <ChatElement {...el} />;
+              })}
+            </Stack>
           </SimpleBarStyle>
         </Stack>
       </Stack>

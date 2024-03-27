@@ -1,14 +1,30 @@
 import React from "react";
 import { useTheme } from "@mui/material/styles";
-import { Stack, IconButton, Box, Divider, Avatar } from "@mui/material";
+import {
+  Stack,
+  IconButton,
+  Box,
+  Divider,
+  Avatar,
+  Menu,
+  MenuItem,
+} from "@mui/material";
 import { Gear } from "phosphor-react";
 import { faker } from "@faker-js/faker";
 import { useState } from "react";
-import { Nav_Buttons } from "../../data";
+import { Nav_Buttons, Profile_Menu } from "../../data";
 
 const SideBar = () => {
   const theme = useTheme();
   const [selected, setSelected] = useState(0);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <Box
       p={3}
@@ -36,7 +52,42 @@ const SideBar = () => {
                 borderRadius: "50%",
               }}
             >
-              <Avatar src={faker.image.avatar()} />
+              <Avatar
+                sx={{ width: 48, height: 48 }}
+                id="basic-button"
+                aria-controls={open ? "basic-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
+                onClick={handleClick}
+                src={faker.image.avatar()}
+              />
+              <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                  "aria-labelledby": "basic-button",
+                }}
+                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                transformOrigin={{ vertical: "bottom", horizontal: "left" }}
+              >
+                <Stack spacing={1} px={1}>
+                  {Profile_Menu.map((el) => (
+                    <MenuItem onClick={handleClick}>
+                      <Stack
+                        sx={{ width: 100 }}
+                        direction={"row"}
+                        alignItems={"center"}
+                        justifyContent={"space-between"}
+                      >
+                        <span>{el.title}</span>
+                        {el.icon}
+                      </Stack>
+                    </MenuItem>
+                  ))}
+                </Stack>
+              </Menu>
             </Box>
           </Stack>
 
@@ -51,7 +102,11 @@ const SideBar = () => {
                   }}
                 >
                   <IconButton
-                    sx={{ fontSize: 28, width: "max-centent", color: "#fff" }}
+                    sx={{
+                      fontSize: 28,
+                      width: "max-centent",
+                      color: "#fff",
+                    }}
                     key={el.index}
                   >
                     {el.icon}
@@ -62,7 +117,11 @@ const SideBar = () => {
                   onClick={() => {
                     setSelected(el.index);
                   }}
-                  sx={{ fontSize: 28, width: "max-centent", color: "#fff" }}
+                  sx={{
+                    fontSize: 28,
+                    width: "max-centent",
+                    color: "#fff",
+                  }}
                   key={el.index}
                 >
                   {el.icon}
